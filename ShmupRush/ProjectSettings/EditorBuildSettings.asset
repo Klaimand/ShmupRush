@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/_Scenes/KLD_MainMenu.unity
+    guid: e49fb938f2d20b14c919b01349a64874
+  - enabled: 1
+    path: Assets/_Scenes/KLD_Emptyroom.unity
+    guid: 53ae5b8e977ede04fb05e18261731234
   m_configObjects: {}

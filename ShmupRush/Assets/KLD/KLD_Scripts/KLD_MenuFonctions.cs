@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class KLD_MenuFonctions : MonoBehaviour
 {
     [SerializeField]
-    GameObject resumeCanvas;
+    GameObject resumeCanvas, gameOverCanvas;
 
     private bool isResumeScreenOpened;
 
@@ -15,6 +15,7 @@ public class KLD_MenuFonctions : MonoBehaviour
     {
         closeResumeScreen();
         isResumeScreenOpened = false;
+        gameOverCanvas.SetActive(false);
     }
 
     // Update is called once per frame
@@ -60,6 +61,16 @@ public class KLD_MenuFonctions : MonoBehaviour
     public void restartScene ()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void goToMainMenu ()
+    {
+        SceneManager.LoadScene("KLD_MainMenu");
+    }
+
+    public void popGameOver ()
+    {
+        gameOverCanvas.SetActive(true);
     }
 
 }
