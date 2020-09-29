@@ -28,8 +28,7 @@ public class KLD_PlayerMovement : MonoBehaviour
 
     [SerializeField]
     bool isTooHigh, isTooLow, isTooLeft, isTooRight;
-
-
+     
     //***********************************************************************************************************
 
     private void Awake()

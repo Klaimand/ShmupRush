@@ -38,6 +38,7 @@ public class KLD_PlayerBullet : MonoBehaviour
         }
         else if (collision.collider.gameObject.CompareTag("Enemy"))
         {
+            collision.gameObject.GetComponent<KLD_EnemyLife>().takeDamage();
             Destroy(gameObject);
         }
     }
