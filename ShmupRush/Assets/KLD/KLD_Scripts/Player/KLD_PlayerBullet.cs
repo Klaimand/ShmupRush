@@ -6,12 +6,15 @@ public class KLD_PlayerBullet : MonoBehaviour
 {
 
     Rigidbody2D rb;
-    
+
     [SerializeField]
     private float bulletSpeed;
 
     [Space(10), SerializeField]
     private float timeToAutoDestroy;
+
+    [SerializeField]
+    bool isPlayerBullet = false;
 
     private void Awake()
     {
@@ -24,14 +27,21 @@ public class KLD_PlayerBullet : MonoBehaviour
         StartCoroutine(AutoDestroyIn(timeToAutoDestroy));
     }
 
+    private void Update()
+    {
+        //transform.position += transform.right * bulletSpeed * Time.deltaTime;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.velocity = new Vector2(bulletSpeed, 0f);
+        //rb.velocity = new Vector2(bulletSpeed, 0f);
+        rb.velocity = (Vector2)transform.right * bulletSpeed;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        /*
         if (collision.collider.gameObject.CompareTag("Wall"))
         {
             Destroy(gameObject);
@@ -40,10 +50,20 @@ public class KLD_PlayerBullet : MonoBehaviour
         {
             collision.gameObject.GetComponent<KLD_EnemyLife>().takeDamage();
             Destroy(gameObject);
+        }*/
+        if (isPlayerBullet)
+        {
+            collision.gameObject.SendMessage("enemyTakeDamage", SendMessageOptions.DontRequireReceiver);
         }
+        else
+        {
+            collision.gameObject.SendMessage("takeDamage", SendMessageOptions.DontRequireReceiver);
+        }
+        Destroy(gameObject);
+
     }
 
-    IEnumerator AutoDestroyIn (float time)
+    IEnumerator AutoDestroyIn(float time)
     {
         yield return new WaitForSeconds(time);
         Destroy(gameObject);

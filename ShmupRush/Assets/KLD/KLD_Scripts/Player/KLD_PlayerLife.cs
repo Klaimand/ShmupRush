@@ -29,6 +29,7 @@ public class KLD_PlayerLife : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.A))
         {
             gainHP();
@@ -36,16 +37,16 @@ public class KLD_PlayerLife : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Z))
         {
             takeDamage();
-        }
+        }*/
     }
 
-    public void gainHP ()
+    public void gainHP()
     {
         curHP++;
         refreshHpDisplay();
     }
 
-    public void takeDamage ()
+    public void takeDamage()
     {
         if (curHP > 0)
         {
@@ -58,13 +59,13 @@ public class KLD_PlayerLife : MonoBehaviour
         refreshHpDisplay();
     }
 
-    void die ()
+    void die()
     {
         menuFonctions.popGameOver();
         print("isdead");
     }
 
-    void refreshHpDisplay ()
+    void refreshHpDisplay()
     {
         hpDisplayText.text = curHP > 99 ? "99+" : curHP.ToString();
     }

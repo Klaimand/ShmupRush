@@ -17,6 +17,8 @@ public class KLD_TriggerOnCam : MonoBehaviour
     {
         cameraTransform = Camera.main.transform;
         mainCamera = cameraTransform.GetComponent<Camera>();
+
+        setAllGameObjectsActive(objectToTrigger, false);
     }
 
     // Update is called once per frame
@@ -25,10 +27,15 @@ public class KLD_TriggerOnCam : MonoBehaviour
         if (!triggered && cameraTransform.position.x + mainCamera.orthographicSize * 16f / 9f > transform.position.x)
         {
             triggered = true;
-            foreach(GameObject go in objectToTrigger)
-            {
-                go.SetActive(true);
-            }
+            setAllGameObjectsActive(objectToTrigger, true);
+        }
+    }
+
+    void setAllGameObjectsActive(GameObject[] _objectsToActive, bool _value)
+    {
+        foreach (GameObject _go in _objectsToActive)
+        {
+            _go.SetActive(_value);
         }
     }
 }
