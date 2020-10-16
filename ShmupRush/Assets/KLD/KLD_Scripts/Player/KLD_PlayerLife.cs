@@ -13,6 +13,15 @@ public class KLD_PlayerLife : MonoBehaviour
 
     private int curHP = 0;
 
+    [SerializeField]
+    GameObject explosionObj;
+
+    [SerializeField]
+    Vector2 explosionOffset;
+
+    [SerializeField]
+    SpriteRenderer spriteRenderer;
+
     KLD_MenuFonctions menuFonctions;
 
     // Start is called before the first frame update
@@ -40,6 +49,14 @@ public class KLD_PlayerLife : MonoBehaviour
         }*/
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Walls"))
+        {
+            die();
+        }
+    }
+
     public void gainHP()
     {
         curHP++;
@@ -62,12 +79,19 @@ public class KLD_PlayerLife : MonoBehaviour
     void die()
     {
         menuFonctions.popGameOver();
+        spawnExplosionObj();
+        spriteRenderer.enabled = false;
         print("isdead");
     }
 
     void refreshHpDisplay()
     {
         hpDisplayText.text = curHP > 99 ? "99+" : curHP.ToString();
+    }
+
+    void spawnExplosionObj()
+    {
+        Instantiate(explosionObj, transform.position + (Vector3)explosionOffset, Quaternion.Euler(0f, 0f, Random.value * 360f));
     }
 
 }
